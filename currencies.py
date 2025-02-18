@@ -5,30 +5,31 @@ RATES = {
     "GBPEUR": 1.13,
     "CHFEUR": 0.86,
     "EURGBP": 0.885,
-}
+    }
 
-def display_rates():
-    for currency_pair in RATES:
-        print(currency_pair, RATES[currency_pair])
+# First step
+for key, value in RATES.items():
+    print(key, value)
 
-def display_base_currencies():
-    for currency_pair in RATES:
-        print(currency_pair[:3])
+# Second step
+# amount is a tuple, amount[0] is the value I have, amount[1] is the currency of the money I have
+# Third step
+for key, value in RATES.items():
+    print(key[0:3])
 
-def convert(amount, target_currency):
-    original_amount, original_currency = amount
+def convert(amount, currency):
+    """returns the converted amount in the given currency
+    amount is a tuple like (100, "EUR")
+    currency is a string
+    """
+    for key, value in RATES.items():
 
-    for currency_pair, rate in RATES.items():
-        base_currency, quote_currency = currency_pair[:3], currency_pair[3:]
+        if amount[1] == key[0:3] and currency == "EUR":
+            return round(value * amount[0])
 
-        if original_currency == base_currency and target_currency == quote_currency:
-            return round(original_amount * rate)
-
-        if original_currency == quote_currency and target_currency == base_currency:
-            return round(original_amount / rate)
+        if  amount[1] == key[3:6] and currency == key[0:3]:
+            return round(amount[0] / value)
 
     return None
 
-display_rates()
-display_base_currencies()
 print(convert((100, "GBP"), "EUR"))
