@@ -8,14 +8,12 @@ RATES = {
     }
 
 # First step
-for key, value in RATES.items():
-    print(key, value)
+
 
 # Second step
 # amount is a tuple, amount[0] is the value I have, amount[1] is the currency of the money I have
 # Third step
-for key, value in RATES.items():
-    print(key[0:3])
+
 
 def convert(amount, currency):
     """returns the converted amount in the given currency
